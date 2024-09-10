@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project(untitled34 VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_PREFIX_PATH "C:\\Qt\\6.7.1\\msvc2019_64")
 
