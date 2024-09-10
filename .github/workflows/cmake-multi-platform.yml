@@ -55,7 +55,6 @@ jobs:
 
         #install ninja
 
-      - uses: actions/checkout@master
       - uses: seanmiddleditch/gha-setup-ninja@master
 
       - name: Set reusable strings
