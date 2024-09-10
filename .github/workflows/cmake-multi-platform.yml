@@ -65,11 +65,8 @@ jobs:
         run: |
           echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v2
-        with:
-          msbuild-architecture: x64
-          vs-version: 'latest'
+      - uses: ilammy/msvc-dev-cmd@v1
+    
 
       - name: Configure CMake
         # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
@@ -77,7 +74,7 @@ jobs:
         run: >
           cmake -B ${{ steps.strings.outputs.build-output-dir }}
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-          -G Ninja
+          -G "NMake Makefiles"
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
           -S ${{ github.workspace }}/untitled34
 
