@@ -5,6 +5,8 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
+    int max;
+
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/untitled34/Main.qml"));
     QObject::connect(
