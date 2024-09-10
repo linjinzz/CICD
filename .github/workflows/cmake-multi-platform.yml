@@ -87,7 +87,7 @@ jobs:
         with:
           style: "" # disable clang-format checks.
           tidy-checks: "" # Use .clang-tidy config file.
-          database: "${{ github.workspace }}/build"
+          database: "${{ github.workspace }}\build"
 
       - name: Fail fast?!
         if: steps.linter.outputs.clang-tidy-checks-failed > 0
