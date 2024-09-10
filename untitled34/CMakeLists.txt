@@ -5,7 +5,7 @@ project(untitled34 VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_PREFIX_PATH "C:\\Qt\\6.7.1\\msvc2019_64")
-
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup()

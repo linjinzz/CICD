@@ -75,7 +75,6 @@ jobs:
           cmake -B build
           -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
           -G Ninja
-          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
           -S ${{ github.workspace }}/untitled34
 
       - name: Build
