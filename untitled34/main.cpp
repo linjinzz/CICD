@@ -6,6 +6,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     int max;
+    int max2;
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/untitled34/Main.qml"));
