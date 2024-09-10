@@ -86,6 +86,7 @@ jobs:
         with:
           style: "" # disable clang-format checks.
           tidy-checks: "" # Use .clang-tidy config file.
+          database: "${{ github.workspace }}/build"
           
 
       - name: Fail fast?!

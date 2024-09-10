@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
     int test;
     int abc2;
     int abcsdasd;
+    int abcssda;
 
 
     QQmlApplicationEngine engine;
