@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
     int max;
     int abc;
     int test;
+    int abc2;
 
 
     QQmlApplicationEngine engine;
