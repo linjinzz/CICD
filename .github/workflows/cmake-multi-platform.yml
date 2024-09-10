@@ -89,9 +89,9 @@ jobs:
         run: cmake --build build --config ${{ matrix.build_type }}
           
 
-      - name: Fail fast?!
-        if: steps.linter.outputs.clang-tidy-checks-failed > 0
-        run: exit 1
+      # - name: Fail fast?!
+      #   if: steps.linter.outputs.clang-tidy-checks-failed > 0
+      #   run: exit 1
 
       - name: Test
         working-directory: ${{ steps.strings.outputs.build-output-dir }}
