@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     int abc2;
     int abcsdasd;
     int abcssda;
+    int dsada;
 
 
     QQmlApplicationEngine engine;
