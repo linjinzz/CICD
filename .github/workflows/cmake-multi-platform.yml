@@ -77,14 +77,15 @@ jobs:
           -G Ninja
           -S ${{ github.workspace }}/untitled34
 
-      - name: Check if ABC file exists
+      - name: Check if compile_commands.json file exists
+        shell: pwsh
         run: |
-          if [ -f ${{ github.workspace }}/build/compile_commands.json]; then
-            echo "File ${{ github.workspace }}/build/compile_commands.json exists"
-          else
-            echo "File ${{ github.workspace }}/build/compile_commands.json does not exist"
+          if (Test-Path "D:\a\CICD\CICD\build\compile_commands.json") {
+            Write-Output "File compile_commands.json exists"
+          } else {
+            Write-Output "File compile_commands.json does not exist"
             exit 1
-          fi
+          }
 
       - uses: cpp-linter/cpp-linter-action@v2
         id: linter
