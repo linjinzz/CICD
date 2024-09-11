@@ -98,6 +98,13 @@ jobs:
       - name: Build
         # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
         run: cmake --build build --config ${{ matrix.build_type }}
+
+      - name : upload package
+        uses: actions/upload-artifact@V4
+        if: always()
+        with:
+          name: C++_BINARY
+          path: ${{ github.workspace }}/buil/appuntitled34.exe
           
 
       # - name: Fail fast?!
