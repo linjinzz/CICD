@@ -104,7 +104,7 @@ jobs:
         if: always()
         with:
           name: C++_BINARY
-          path: ${{ github.workspace }}/buil/appuntitled34.exe
+          path: ${{ github.workspace }}/build/appuntitled34.exe
           
 
       # - name: Fail fast?!
