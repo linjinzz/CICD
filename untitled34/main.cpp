@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
 
     int max;
     int absd;
+    int asdasda;
 
 
 
