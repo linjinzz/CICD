@@ -8,10 +8,8 @@ int main(int argc, char *argv[])
     int max;
     int max2;
 
-
-
-
-
+    int *test = nullptr;
+    *test = 0;
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/untitled34/Main.qml"));
@@ -19,7 +17,8 @@ int main(int argc, char *argv[])
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,
         &app,
-        []() { QCoreApplication::exit(-1); },
+        []()
+        { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
     engine.load(url);
 
