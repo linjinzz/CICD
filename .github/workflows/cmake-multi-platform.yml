@@ -5,6 +5,8 @@ name: CMake on multiple platforms
 on:
   push:
     branches: ["main"]
+    tags:
+      - "v*"
   pull_request:
     branches: [main]
     paths:
@@ -105,12 +107,25 @@ jobs:
           name: C++_BINARY
           path: ${{ github.workspace }}/build/appuntitled34.exe
 
-      # - name: Fail fast?!
-      #   if: steps.linter.outputs.clang-tidy-checks-failed > 0
-      #   run: exit 1
+  package:
+    runs-on: windows-latest
 
-      - name: Test
-        working-directory: ${{ steps.strings.outputs.build-output-dir }}
-        # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-        # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-        run: ctest --build-config ${{ matrix.build_type }}
+    needs: build
+
+    if: startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      - name: Run packaging script
+        shell: pwsh
+        working-directory: ${{ github.workspace }}/build
+        run: Compress-Archive -Path ./* -DestinationPath ${{ github.workspace }}/build/${{ github.ref_name }}.zip 
+      
+      - name: save package
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ github.ref_name }}
+          path: ${{ github.workspace }}/build/${{ github.ref_name }}.zip 
+
+
+
