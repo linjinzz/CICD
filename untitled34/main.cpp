@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
 
     int max;
     int max2;
+    int max3;
 
 
 
