@@ -117,8 +117,8 @@ jobs:
     steps:
       - name: Run packaging script
         shell: pwsh
-        working-directory: ${{ github.workspace }}/build
-        run: Compress-Archive -Path ./* -DestinationPath ${{ github.workspace }}/build/${{ github.ref_name }}.zip 
+        working-directory: ${{ github.workspace }}
+        run: Compress-Archive -Path ./build/* -DestinationPath ${{ github.workspace }}/build/${{ github.ref_name }}.zip 
       
       - name: save package
         uses: actions/upload-artifact@v4
