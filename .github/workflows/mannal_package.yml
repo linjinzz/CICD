@@ -1,0 +1,51 @@
+name: Manual Build and Package
+
+on:
+  workflow_dispatch:  
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+        build_type: [Release]
+        c_compiler: [cl]
+        cpp_compiler: [cl]
+        include:
+          - os: windows-latest
+            c_compiler: cl
+            cpp_compiler: cl
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: "6.7.2"
+          target: "desktop"
+          arch: "win64_msvc2019_64"
+          dir: "${{ github.workspace }}/ThirdParty/"
+          install-deps: "true"
+          cache: "true"
+          cache-key-prefix: "install-qt-action"
+          set-env: "true"
+
+      - name: Set-version-string
+        id: versionString
+        shell: pwsh
+        working-directory: ${{ github.workspace }}
+        run: |
+          $versionFileStr = Get-Content .\VERSION.txt
+          $versionNumber = ($versionFileStr | ForEach-Object { $_[-1] }) -join '.'
+          "versionNumber=$versionNumber" >> $env:GITHUB_OUTPUT
+
+      - uses: ilammy/msvc-dev-cmd@v1
+
+      - name: test
+        shell: pwsh
+        run: |
+          Write-Output "the version number is ${{ steps.versionString.outputs.versionNumber }}"
