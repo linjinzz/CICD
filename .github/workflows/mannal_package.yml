@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:  # 给作业一个名称
-    runs-on: ubuntu-latest  # 指定运行环境
+  build:  # 作业名称
+    runs-on: ubuntu-latest  # 运行环境
     steps:
-      - name: hello
-        run: echo "Hello, world!"  # 执行一个简单的命令
+      - name: hello  # 步骤名称
+        run: echo "Hello, world!"  # 执行的命令
