@@ -1,4 +1,4 @@
-name: 123
+name: mannal-build
 
 on:
     workflow_dispatch:
