@@ -1,51 +1,34 @@
-name: Manual Build and Package
+name: 123
 
 on:
-  workflow_dispatch
-
-jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [windows-latest]
-        build_type: [Release]
-        c_compiler: [cl]
-        cpp_compiler: [cl]
-        include:
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: "6.7.2"
-          target: "desktop"
-          arch: "win64_msvc2019_64"
-          dir: "${{ github.workspace }}/ThirdParty/"
-          install-deps: "true"
-          cache: "true"
-          cache-key-prefix: "install-qt-action"
-          set-env: "true"
-
-      - name: Set-version-string
-        id: versionString
-        shell: pwsh
-        working-directory: ${{ github.workspace }}
-        run: |
-          $versionFileStr = Get-Content .\VERSION.txt
-          $versionNumber = ($versionFileStr | ForEach-Object { $_[-1] }) -join '.'
-          "versionNumber=$versionNumber" >> $env:GITHUB_OUTPUT
-
-      - uses: ilammy/msvc-dev-cmd@v1
-
-      - name: test
-        shell: pwsh
-        run: |
-          Write-Output "the version number is ${{ steps.versionString.outputs.versionNumber }}"
+    workflow_dispatch:
+      inputs:
+        logLevel:
+          description: 'Log level'
+          required: true
+          default: 'warning'
+          type: choice
+          options:
+            - info
+            - warning
+            - debug
+        print_tags:
+          description: 'True to print to STDOUT'
+          required: true
+          type: boolean
+        tags:
+          description: 'Test scenario tags'
+          required: true
+          type: string
+        environment:
+          description: 'Environment to run tests against'
+          type: environment
+          required: true
+  
+  jobs:
+    print-tag:
+      runs-on: ubuntu-latest
+      if:  ${{ inputs.print_tags }} 
+      steps:
+        - name: Print the input tag to STDOUT
+          run: echo  The tags are ${{ inputs.tags }} 
