@@ -7,6 +7,11 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+      - name: test
+        shell: pwsh
+        working-directory: ${{ github.workspace }}
+        run: ls
+      
       - name: generatingversionnumber
         id: generating-version-number
         shell: pwsh
