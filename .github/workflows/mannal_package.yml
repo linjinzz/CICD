@@ -1,55 +1,11 @@
-name: Manual Build and Package123
+name: 123
 
 on:
-  workflow_dispatch:  
+  workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      # Set fail-fast to false to ensure that feedback is delivered for all matrix combinations. Consider changing this to true when your workflow is stable.
-      fail-fast: false
-      matrix:
-        os: [windows-latest]
-        build_type: [Release]
-        c_compiler: [cl]
-        cpp_compiler: [cl]
-        include:
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
-
+  build:  # 给作业一个名称
+    runs-on: ubuntu-latest  # 指定运行环境
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
-        with:
-          version: "6.7.2"
-          target: "desktop"
-          arch: "win64_msvc2019_64"
-          dir: "${{ github.workspace }}/ThirdParty/"
-          install-deps: "true"
-          cache: "true"
-          cache-key-prefix: "install-qt-action"
-          set-env: "true"
-
-      - name: Set-version-string
-        id: versionString
-        shell: pwsh
-        working-directory: ${{ github.workspace }}
-        run: |
-          $versionFileStr = Get-Content .\VERSION.txt
-          $versionNumber = ($versionFileStr | ForEach-Object { $_[-1] }) -join '.'
-          "versionNumber=$version" >> $env:GITHUB_OUTPUT
-
-      - uses: ilammy/msvc-dev-cmd@v1
-
-      - name: test
-        shell: pwsh
-        run: |
-          Write-Output "the version number is ${{ steps.Set-version-string.outputs.versionNumber}}"
-
-
-
+      - name: hello
+        run: echo "Hello, world!"  # 执行一个简单的命令
