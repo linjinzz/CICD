@@ -7,6 +7,15 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: hello
+      - name: generatingversionnumber
+        id: generating-version-number
+        shell: pwsh
+        working-directory: ${{ github.workspace }}
         run: |
-          echo "hello"
+          $VersionFileStr = Get-Content .\VERSION.txt
+          $VersionNunber = ($VersionFileStr | ForEach-Object { $_[-1] }) -join '.'
+          "VersionNunber=$VersionNunber" >> $env:GITHUB_OUTPUT
+
+      - name: printversionnumber
+        run: |
+          Write-Output "the secret number is ${{ steps.generating-version-number.outputs.VersionNunber }}"
