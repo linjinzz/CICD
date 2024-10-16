@@ -20,4 +20,4 @@ jobs:
 
       - name: printversionnumber
         run: |
-          Write-Output "the secret number is ${{ steps.generating-version-number.outputs.VersionNunber }}"
+          Write-Output "the VersionNunber is ${{ steps.generating-version-number.outputs.VersionNunber }}"

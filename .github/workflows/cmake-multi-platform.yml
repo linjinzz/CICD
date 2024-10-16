@@ -88,13 +88,13 @@ jobs:
       #       exit 1
       #     }
 
-      # - uses: cpp-linter/cpp-linter-action@v2
-      #   id: linter
-      #   with:
-      #     style: "" # disable clang-format checks.
-      #     tidy-checks: "" # Use .clang-tidy config file.
-      #     database: "${{ github.workspace }}/build"
-      #     version: "18"
+      - uses: cpp-linter/cpp-linter-action@v2
+        id: linter
+        with:
+          style: "" # disable clang-format checks.
+          tidy-checks: "" # Use .clang-tidy config file.
+          database: "${{ github.workspace }}/build"
+          version: "18"
 
       - name: Build
         # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
