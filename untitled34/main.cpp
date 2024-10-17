@@ -9,6 +9,9 @@ int main(int argc, char *argv[])
     int max2;
     int max3;
 
+    int* abc=nullptr;
+    *abc=0;
+
 
 
 
